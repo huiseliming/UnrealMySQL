@@ -7,7 +7,6 @@ public class UnrealMySQL : ModuleRules
 	public UnrealMySQL(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
@@ -26,6 +25,7 @@ public class UnrealMySQL : ModuleRules
 			new string[]
 			{
 				"Core",
+				"LibMySQL"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -35,9 +35,8 @@ public class UnrealMySQL : ModuleRules
 			new string[]
 			{
 				"CoreUObject",
+				"Projects",
 				"Engine",
-				"Slate",
-				"SlateCore",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
