@@ -116,6 +116,7 @@ void AUnrealSQLActor::InsertIntoByUnrealStruct(
 						else if (StructProperty->GetCPPType() == TEXT("FDateTime"))
 						{
 							MYSQL_TIME* MySQLTime = (MYSQL_TIME*)FMemory::Malloc(sizeof(MYSQL_TIME));
+							FMemory::Memzero(MySQLTime, sizeof(MYSQL_TIME));
 							FDateTime DateTime = *StructProperty->ContainerPtrToValuePtr<FDateTime>(StructPtrOffset);
 							MySQLTime->year = DateTime.GetYear();
 							MySQLTime->month = DateTime.GetMonth();
@@ -123,7 +124,7 @@ void AUnrealSQLActor::InsertIntoByUnrealStruct(
 							MySQLTime->hour = DateTime.GetHour();
 							MySQLTime->minute = DateTime.GetMinute();
 							MySQLTime->second = DateTime.GetSecond();
-							MySQLTime->time_type = enum_mysql_timestamp_type::MYSQL_TIMESTAMP_DATETIME;
+							//MySQLTime->time_type = enum_mysql_timestamp_type::MYSQL_TIMESTAMP_DATETIME;
 							MySQLBinds[j].buffer_type = enum_field_types::MYSQL_TYPE_DATETIME;
 							MySQLBinds[j].buffer = MySQLTime;
 							MySQLBinds[j].buffer_length = sizeof(MYSQL_TIME);
